@@ -1,71 +1,67 @@
-import BlogCard from '../components/BlogCard';
-import logo from '../assets/logo.png';
-import arrow from '../assets/arrow.png'
-
 
 import tellogo from '../assets/tellogo.png'
 import fb from '../assets/fb.png'
-import { Link } from "react-router-dom";
+import gmail from'../assets/gmail.png'
+import React, { useState } from 'react';
+import BlogCard from '../components/BlogCard';
+import BlogForm from '../components/BlogForm';
 
+export default function Home({ blogs, addPost }) {
+  const [visibleCount, setVisibleCount] = useState(6);
+  const [showForm, setShowForm] = useState(false);
 
+  const handleShowMore = () => setVisibleCount((prev) => prev + 3);
 
+  const handlePostSubmit = (newBlog) => {
+    addPost(newBlog);        // Call function from App.jsx
+    setShowForm(false);      // Close modal
+  };
 
-//import all image
+    return (
+    <div className="p-4">
+      <div className="flex justify-end mb-4 mt-0">
+        <button
+          onClick={() => setShowForm(true)}
+          className="bg-black text-white px-4 py-2 rounded"
+        >
+          Post a Blog
+        </button>
+      </div>
 
-export default function Home({blogs}) {
- 
-  return (
-    <> 
-    <div style={{ backgroundImage: `url(${logo})`, backgroundSize: 'cover', backgroundPosition: 'center', height: '400px',borderRadius:'10px ',margin:"10px",color:"white", width:"95vw",  alignItems: 'center',
-    justifyContent: 'center' }}>
-      <h1 className='font-inter text-[30px] font-bold'>Featured</h1>
-      <h1 className="text-[2rem] font-bold">Breaking into Product Design:</h1>
-        <h2 className="text-[30px] font-Irish Grover font-bold">Advice from Untitled Founder, Frankie</h2>
-        <p className="text-[1.1rem] flex m-13 font-bold ">
-          
-          Let’s get one thing out of the way:
-          
-          you don’t need a fancy Bachelor’s Degree to get into Product Design.{" "}
-          
-          We sat down with Frankie Sallivan to talk about gatekeeping in product
-          design 
-          and who anyone can get into this growing
-           <img className='w-[160px] h-auto ' src={arrow}/>
-          </p>
-         
-    </div>
-    <h2 className='m-4 font-Semi Bold'>Recent Blog Posts</h2>
-    <div className="flex flex-row flex-wrap m-4  ">
-    
+      {showForm && (
+        <BlogForm
+          onSubmit={handlePostSubmit}
+          onClose={() => setShowForm(false)}
+        />
+      )}
+
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+        {blogs.slice(0, visibleCount).map((blog) => (
+          <BlogCard key={blog.id} {...blog} />
+        ))}
+      </div>
+
+      {visibleCount < blogs.length && (
+       <div className="text-center mt-6">
+          <button
+            onClick={handleShowMore}
+            className="bg-black text-white px-4 py-2 rounded w-[8rem] h-auto"
+          >
+            Show More
+          </button>
+        </div>
+      )}
       
-      {blogs.map((blog) => (
-        
-        <BlogCard id={blog.id} image={blog.image} key={blog.id} title={blog.title} author={blog.author} Date={blog.createdAt} profile={blog.profile} description={blog.description} />
-       
-      ))}
+        <footer className="m-4 bg-black text-white flex flex-wrap flex-row justify-between w-[98%] h-auto rounded items-center ">
+        <p className='ml-4'>Blog</p>
+        <p> &copy;2025 Blog. All rights are reserved.</p>
+        <div className="flex h-[3rem] w-[3.8rem]  mt-5 ">
+          <img src={tellogo} alt="TG LOGO" className=" h-[1rem] w-[1rem]" />
+          <img src={fb} alt="FB LOGO" className=" h-[1rem] w-[1rem]" />
+          <img src={gmail} alt="EMAIL LOGO" className=" h-[1rem] w-[1rem]" />
+        </div>
+      </footer>
     </div>
-    <div className='m-2 flex justify-center p-4  '>
-       <button className='bg-black text-white w-[200px] h-[50px] rounded-[10px]'>show more</button>
-    </div>
-    <footer className='flex justify-between bg-black text-white w-full h-[50px] '>
-      <p>Blog</p>
-      <div>
-        
-        <p> &copy; 2025 Blog. All rights are reserved.</p>
-       
-      </div>
-      <div className='flex display-end w-[40px] h-auto'>
-        <img src={tellogo} />
-         <img className='rounded-none'src={fb} />
-          <img src={tellogo} />
-
-      </div>
-
-    </footer>
-   
-
-    
-    </>
-   
   );
+
 }

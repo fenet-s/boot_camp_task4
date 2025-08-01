@@ -16,6 +16,8 @@ export default function BlogCard({ image,id,title,author,Date,profile,descriptio
       {author}
       </p>
       <p>{Date}</p>
+    
+
      
 
       

@@ -4,7 +4,7 @@ import {Link} from 'react-router-dom'
 
 const Navbar = () => {
   return (
-    <nav className='flex justify-between w-full'>
+    <nav className='flex justify-between w-[80%]'>
         <div>
           <h1 className='h-[60px] w-[120px] left-[82px] font-[700] text-[30px]'>Blog</h1>
           </div>
@@ -17,9 +17,14 @@ const Navbar = () => {
         <li><h1>Saved</h1></li>
         <li><Link to='/BookMarks'><h1>Book Mark</h1></Link></li>
       </ul>
-    <div className=''>
-            <button className='bg-black text-white rounded-[10px] w-[150px] h-[60px] left-[1100px] font-[800] leading-[100%] tracking-[0%] '>Post a Blog </button> 
-            </div>
+      
+
+
+    {/* <div className=''>
+            <Link to='/BlogForm'>
+            <button className='bg-black text-white rounded-[10px] w-[150px] h-[60px] left-[1100px] font-[800] leading-[100%] tracking-[0%] '>Post a Blog </button>
+            </Link> 
+            </div> */}
         
         
     </nav>

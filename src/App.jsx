@@ -1,6 +1,6 @@
 import BlogDetails from './pages/BlogDetails'
 import { useState } from 'react'
-// import EditBlog from './pages/EditBlog'
+import EditBlog from './pages/EditBlog'
 import Home from './pages/Home'
 import React from 'react'
 import {Routes,Route} from 'react-router-dom'
@@ -13,12 +13,13 @@ import blog4 from "./assets/blog4.png";
 import blog5 from "./assets/blog5.png";
 import blog6 from "./assets/blog6.png";
 import pro1 from "./assets/pro1.png"
-
-// import CreateBlog from './pages/CreateBlog'
-
+import BlogForm from './components/BlogForm';
+import { useAtom } from 'jotai';
+import { bookmarksAtom } from './store/BlogAtom'; // adjust path if needed
 
 const App= () => {
- const [blogs] = useState([
+  const [bookmarks,setBookmarks]=useAtom(bookmarksAtom);
+ const [blogs,setBlogs] = useState([
     
     { image:blog1,
       id: '1',
@@ -120,16 +121,29 @@ const App= () => {
        
     },
   ]);
+  const addPost=(newPost)=>{
+    setBlogs([...blogs,newPost])
 
+  }
+const updatedBlog=(updated)=>{
+  setBlogs((prev)=>
+  prev.map((b)=>(b.id===updated.id?updated: b)))
+}
 
  return (
   <div>
-  <Navbar/>
+  <Navbar addPost={addPost}/>
   <Routes>
-    <Route path='/' element={<Home blogs={blogs}/>} />
+    <Route path='/' element={<Home blogs={blogs} addPost={(newBlog)=> setBlogs([newBlog, ...blogs])}/>} />
     {/* <Route path='/Edit/:id' element={<EditBlog/>} /> */}
-    <Route path='/Blog/:id' element={<BlogDetails blogs={blogs}/>} />
-    <Route path='/BookMarks' element={<BookMarks/>} />
+    <Route path='/Blog/:id' element={<BlogDetails blogs={blogs} bookmarks={bookmarks} setBookmarks={setBookmarks}/>} />
+    <Route path='/BookMarks' element={<BookMarks blogs={blogs} BookMarks={BookMarks}/>} />
+    <Route path='/BlogForm' element={<BlogForm/>}/>
+    <Route 
+  path='/Edit/:id' 
+  element={<EditBlog blogs={blogs} updatedBlog={updatedBlog} />}
+/>
+
   
   </Routes>
  
