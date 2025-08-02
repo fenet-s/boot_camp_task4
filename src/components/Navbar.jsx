@@ -8,8 +8,8 @@ import BlogForm from '../components/BlogForm';
 const Navbar = ({addPost}) => {
    const [showForm, setShowForm] = useState(false);
      const handlePostSubmit = (newBlog) => {
-         addPost(newBlog);        // Call function from App.jsx
-         setShowForm(false);      // Close modal
+         addPost(newBlog);        
+         setShowForm(false);    
   };
   return (
     <>

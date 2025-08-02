@@ -1,7 +1,6 @@
 import { Link } from 'react-router-dom';
 
 
-
 export default function BlogCard({ image,id,title,author,createdAt,profile,description }) {
   return (
      <Link to={`/blog/${id}`} className="">

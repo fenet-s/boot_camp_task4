@@ -118,20 +118,20 @@ const App = () => {
   
   useEffect(() => {
     setBlogsAtom(blogs);
-  }, [blogs, setBlogsAtom]); // Depend on blogs to reflect future changes too
+  }, [blogs, setBlogsAtom]); 
 
 
   const addPost = (newPost) => {
     const updated = [...blogs, newPost];
     setBlogs(updated);
-    setBlogsAtom(updated); // keep Jotai in sync
+    setBlogsAtom(updated); 
   };
 
  
   const updatedBlog = (updated) => {
     const updatedList = blogs.map((b) => (b.id === updated.id ? updated : b));
     setBlogs(updatedList);
-    setBlogsAtom(updatedList); // keep Jotai in sync
+    setBlogsAtom(updatedList); 
   };
 
   return (

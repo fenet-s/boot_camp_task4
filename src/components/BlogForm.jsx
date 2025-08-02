@@ -11,7 +11,7 @@ const BlogForm = ({ initialData = {}, onClose, onSubmit }) => {
     date: initialData.date || '',
   });
 
-  const [error, setError] = useState('');
+ 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,10 +21,6 @@ const BlogForm = ({ initialData = {}, onClose, onSubmit }) => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    if (!form.title.trim()) {
-      setError('Title is required');
-      return;
-    }
 
     const newBlog = {
       ...form,
@@ -32,11 +28,11 @@ const BlogForm = ({ initialData = {}, onClose, onSubmit }) => {
       createdAt: new Date().toISOString(),
     };
 
-    onSubmit(newBlog); // Call addPost() from Home.jsx
+    onSubmit(newBlog); 
   };
 
   return (
-    // <div className="fixed inset-0  flex items-center justify-center z-50">
+
     <div
       className="relative bg-cover bg-center w-full flex items-center justify-center"
       style={{ backgroundImage: `url(${image})`, minHeight: '80vh' }}
@@ -47,9 +43,9 @@ const BlogForm = ({ initialData = {}, onClose, onSubmit }) => {
         onSubmit={handleSubmit}
         className="relative z-10 space-y-4 bg-white bg-opacity-90 p-8 rounded-lg shadow-md w-[85%] max-w-4xl"
       >
-        {error && <p className="text-red-500">{error}</p>}
+       
         <h1 className="font-semibold text-[30px] text-center text-black">
-          {initialData.title ? 'Edit Blog' : 'Post a Blog'}
+          {initialData.title ? 'Edit your Post' : 'Post a Blog'}
         </h1>
 
         <div className="flex gap-4">
@@ -136,12 +132,12 @@ const BlogForm = ({ initialData = {}, onClose, onSubmit }) => {
             type="submit"
             className="bg-black text-white px-4 py-2 rounded hover:bg-gray-800"
           >
-            Post
+            {initialData.title ? 'Save' : 'Post'}
           </button>
         </div>
       </form>
     </div>
-    // </div>
+   
   );
 };
 

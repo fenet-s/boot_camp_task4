@@ -1,11 +1,11 @@
 import React from 'react';
 import { useAtom } from 'jotai';
 import { blogsAtom, bookmarksAtom } from '../store/BlogAtom';
-import BlogCard from '../components/BlogCard'; // or wherever you display a single blog
+import BlogCard from '../components/BlogCard'; 
 
 export default function BookMarks() {
-  const [blogs] = useAtom(blogsAtom);           // All blogs
-  const [bookmarks] = useAtom(bookmarksAtom);   // Array of bookmarked IDs
+  const [blogs] = useAtom(blogsAtom);           
+  const [bookmarks] = useAtom(bookmarksAtom);  
   console.log("Current bookmarks in BookMarks:", bookmarks);
   console.log("Blogs in BookMarks:", blogs);
     

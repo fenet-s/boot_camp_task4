@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { FiBookmark, FiEdit2 } from 'react-icons/fi';
 import { BsBookmarkFill } from 'react-icons/bs';
-import { bookmarksAtom } from '../store/BlogAtom'; // Adjust the path as needed
+import { bookmarksAtom } from '../store/BlogAtom'; 
 
 export default function BlogDetails({ blogs }) {
   const { id } = useParams();
@@ -15,7 +15,6 @@ export default function BlogDetails({ blogs }) {
   useEffect(() => {
     const found = blogs.find((b) => b.id.toString() === id);
     setBlog(found);
-    console.log('blogd',found)
   }, [id, blogs]);
 
   if (!blog) return <p className="p-4 text-red-500">Blog not found</p>;
@@ -28,9 +27,9 @@ export default function BlogDetails({ blogs }) {
        const newBookmarks = bookmarks.filter((b) => b !== blogIdStr);
         setBookmarks(newBookmarks);
         console.log("Bookmarks after removal:", newBookmarks);
-      // setBookmarks(bookmarks.filter((b) => b !== blogIdStr));
+
     } else {
-      // setBookmarks([...bookmarks, blogIdStr]);
+      
        const newBookmarks = [...bookmarks, blogIdStr];
         setBookmarks(newBookmarks);
         console.log("Bookmarks after addition:", newBookmarks);
