@@ -10,12 +10,12 @@ export default function BlogDetails({ blogs }) {
   const [blog, setBlog] = useState(null);
   const navigate = useNavigate();
 
-  // Jotai atom for bookmarks state
   const [bookmarks, setBookmarks] = useAtom(bookmarksAtom);
 
   useEffect(() => {
     const found = blogs.find((b) => b.id.toString() === id);
     setBlog(found);
+    console.log('blogd',found)
   }, [id, blogs]);
 
   if (!blog) return <p className="p-4 text-red-500">Blog not found</p>;
@@ -25,9 +25,15 @@ export default function BlogDetails({ blogs }) {
 
   const toggleBookmark = () => {
     if (isBookmarked) {
-      setBookmarks(bookmarks.filter((b) => b !== blogIdStr));
+       const newBookmarks = bookmarks.filter((b) => b !== blogIdStr);
+        setBookmarks(newBookmarks);
+        console.log("Bookmarks after removal:", newBookmarks);
+      // setBookmarks(bookmarks.filter((b) => b !== blogIdStr));
     } else {
-      setBookmarks([...bookmarks, blogIdStr]);
+      // setBookmarks([...bookmarks, blogIdStr]);
+       const newBookmarks = [...bookmarks, blogIdStr];
+        setBookmarks(newBookmarks);
+        console.log("Bookmarks after addition:", newBookmarks);
     }
   };
 
