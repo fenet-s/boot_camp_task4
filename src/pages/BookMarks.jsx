@@ -1,6 +1,6 @@
 import React from 'react';
 import { useAtom } from 'jotai';
-import { blogsAtom, bookmarksAtom } from '../store/BlogAtom';
+import { blogsAtom, bookmarksAtom } from '../store/blogAtom';
 import BlogCard from '../components/BlogCard'; 
 
 export default function BookMarks() {
