@@ -13,7 +13,7 @@ const Navbar = ({addPost}) => {
   };
   return (
     <>
-    <nav className='flex justify-between w-[95%]'>
+    <nav className='flex justify-between w-[95%] max-w-10xl '>
         <div>
           <h1 className='h-[60px] w-[120px] left-[82px] font-[700] text-[30px]'>Blog</h1>
           </div>

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { useAtom } from 'jotai';
-import { blogsAtom, bookmarksAtom } from './store/BlogAtom';
+import { blogsAtom, bookmarksAtom } from './store/blogAtom';
 
 import Navbar from './components/Navbar';
 import BlogForm from './components/BlogForm';

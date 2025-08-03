@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import { useAtom } from 'jotai';
 import { FiBookmark, FiEdit2 } from 'react-icons/fi';
 import { BsBookmarkFill } from 'react-icons/bs';
-import { bookmarksAtom } from '../store/BlogAtom'; 
+import { bookmarksAtom } from '../store/blogAtom'; 
 
 export default function BlogDetails({ blogs }) {
   const { id } = useParams();
@@ -22,7 +22,7 @@ export default function BlogDetails({ blogs }) {
   const blogIdStr = blog.id.toString();
   const isBookmarked = bookmarks.includes(blogIdStr);
 
-  const toggleBookmark = () => {
+  const toggleBookmark = () => { 
     if (isBookmarked) {
        const newBookmarks = bookmarks.filter((b) => b !== blogIdStr);
         setBookmarks(newBookmarks);
